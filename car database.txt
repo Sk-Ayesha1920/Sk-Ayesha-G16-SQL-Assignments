@@ -1,0 +1,260 @@
+select * from countries;
+select * from car_makers;
+select * from model_details;
+select * from car_names;
+select * from car_details;
+
+1.select * fROM countries;
+select CountryName,continent 
+from countries
+order by continent;
+
+2.select continent, count(CountryName) as num_countries
+from countries
+group by continent;
+
+3.select Countries.countryname
+from Countries
+left join Car_Makers 
+ON Countries.countryid = Car_Makers.country
+where Car_Makers.country IS null;
+
+4.select Car_Makers.Maker,Countries.countryname from Countries join car_makers on 
+    Countries.countryid=Car_Makers.counrty
+    where countryname='japan';
+
+5.select Car_Makers.MAKER, Countries.COUNTRYNAME FROM  Countries
+join Car_Makers 
+on Countries.countryid = Car_Makers.country
+where Countries.countryname in ('france', 'usa');
+
+6.select Car_Makers.MAKER,Countries.countryname,Continents.continent 
+from Car_Makers
+join Countries 
+on Countries.countryid = Car_Makers.country
+join Continents 
+on Countries.Continent=Continents.contid 
+where Car_Makers.MAKER='volvo';
+
+7. select car_makers.maker, car_makers.fullname, model_details.model 
+from car_makers 
+join model_details 
+on car_makers.id = model_details.maker 
+where car_makers.fullname = 'ford motor company';
+
+8. select countries.countryname, count(model_details.model) as carmodel 
+from car_makers
+join countries on countries.countryid = car_makers.country
+join model_details on car_makers.id = model_details.maker
+where countries.countryname = 'germany'
+group by countries.countryname;
+
+9. select countries.countryname, model_details.model, car_makers.maker as makername 
+from car_makers
+join countries on countries.countryid = car_makers.country
+join model_details on car_makers.id = model_details.maker
+where countries.countryname = 'japan';
+
+10. select cn.descr as model_name, cd.mpg, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.mpg desc
+fetch first 1 rows only;
+
+select  cn.descr as model_name, cd.mpg, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.mpg asc;
+
+select cn.descr as model_name, cd.cylinders, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.cylinders desc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.cylinders, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.cylinders asc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.edispl, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.edispl desc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.edispl, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.edispl asc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.horsepower, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.horsepower desc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.horsepower, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.horsepower asc
+fetch first 1 rows only;
+
+select  cn.descr as model_name, cd.weight, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.weight desc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.weight, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.weight asc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.accel, c.countryname, co.continent, 'highest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.accel desc
+fetch first 1 rows only;
+
+select cn.descr as model_name, cd.accel, c.countryname, co.continent, 'lowest' as type
+from car_details cd
+join car_names cn on cd.id = cn.id
+join model_details md on cn.model = md.model
+join car_makers cm on md.maker = cm.id
+join countries c on cm.country = c.countryid
+join continents co on c.continent = co.contid
+order by cd.accel asc
+fetch first 1 rows only;
+
+11. select year, count(id) as carsmade
+from car_details
+group by year
+order by carsmade desc
+fetch first 1 rows only;
+
+12. select year, count(id) as carsmade
+from car_details
+group by year
+order by carsmade asc
+fetch first 1 rows only;
+
+13. select 'mpg' as detail, min(mpg), max(mpg), avg(mpg)
+from car_details
+union all
+select 'cylinders' as detail, min(cylinders), max(cylinders), avg(cylinders)
+from car_details
+union all 
+select 'edispl' as detail, min(edispl), max(edispl), avg(edispl)
+from car_details
+union all
+select 'horsepower' as detail, min(horsepower), max(horsepower), avg(horsepower)
+from car_details
+union all
+select 'weight' as detail, min(weight), max(weight), avg(weight)
+from car_details
+union all
+select 'accel' as detail, min(accel), max(accel), avg(accel)
+from car_details;
+
+14. select 'horsepower' as attribute,
+avg(horsepower) as mean_value,
+median(horsepower) as median_value,
+stddev(horsepower) as stddev_value
+from car_details
+union all
+select 'weight' as attribute,
+avg(weight) as mean_value,
+median(weight) as median_value,
+stddev(weight) as stddev_value
+from car_details
+union all
+select 'acceleration' as attribute,
+avg(accel) as mean_value,
+median(accel) as median_value,
+stddev(accel) as stddev_value
+from car_details;
+
+15.  1) continents:
+   contid (primary key)
+   continent
+
+2) countries:
+   countryid (primary key)
+   countryname
+
+3) continent (foreign key referencing continents.contid)
+   car_makers:
+   id (primary key)
+   maker
+   fullname
+   country (foreign key referencing countries.countryid)
+
+4) model_details:
+   modelid (primary key)
+   maker (foreign key referencing car_makers.id)
+   model
+
+5) car_names:
+   id (primary key)
+   model (foreign key referencing model_details.model)
+   descr
+
+6) car_details:
+   id (primary key)
+   mpg
+   cylinders
+   edispl
+   horsepower
+   weight
+   accel
+   year
+   id (foreign key referencing car_names.id)
+
